@@ -8,7 +8,7 @@ public class Portero extends Jugador {
         super();
     }
 
-    public Portero(String nombre, String nacionalidad, String pieHabil, int edad, int rating, Equipo equipo) {
+    public Portero(String nombre, String nacionalidad, String pieHabil, int edad, Equipo equipo) {
         super(nombre, nacionalidad, pieHabil, edad, equipo);
     }
 

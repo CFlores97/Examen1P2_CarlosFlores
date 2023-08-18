@@ -532,8 +532,40 @@ public class Main extends javax.swing.JFrame {
             
             
             
-            if (dcPos.getSelectedItem().equals(dcPos.getElementAt(0))){
+            if (cb_posiciones.getSelectedIndex() == 0){
                 Portero portero = new Portero(name, nacionalidad, pieHabil, edad, selectedEq);
+                dcJug.addElement(portero);
+                selectedEq.getPlantilla().add(portero);
+                
+                JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el portero");
+                
+            }
+            
+            if(cb_posiciones.getSelectedIndex() == 1){
+                Defensa defensor = new Defensa(name, nacionalidad, pieHabil, edad, selectedEq);
+                
+                dcJug.addElement(defensor);
+                selectedEq.getPlantilla().add(defensor);
+                
+                JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el defensor");
+            }
+            if(cb_posiciones.getSelectedIndex() == 2){
+                Mediocampista mediocamp = new Mediocampista(name, nacionalidad, pieHabil, edad, selectedEq);
+                
+                dcJug.addElement(mediocamp);
+                selectedEq.getPlantilla().add(mediocamp);
+                
+                JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el medio campista");
+            }
+            
+            if(cb_posiciones.getSelectedIndex() == 3){
+                Delantero delantero = new Delantero(name, nacionalidad, pieHabil, edad, selectedEq);
+                
+                dcJug.addElement(delantero);
+                selectedEq.getPlantilla().add(delantero);
+                
+                JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el delantero");
+                
             }
             
             

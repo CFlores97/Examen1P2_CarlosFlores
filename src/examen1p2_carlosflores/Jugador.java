@@ -162,7 +162,7 @@ public abstract class Jugador {
 
     @Override
     public String toString() {
-        return "Jugador{" + "nombre=" + nombre + ", nacionalidad=" + nacionalidad + ", pieHabil=" + pieHabil + ", edad=" + edad + ", rating=" + rating + ", equipo=" + equipo + ", agarre=" + agarre + ", lanzamiento=" + lanzamiento + ", fisico=" + fisico + ", ritmo=" + ritmo + ", entrada=" + entrada + ", vision=" + vision + ", passing=" + passing + ", regate=" + regate + ", disparo=" + disparo + '}';
+        return nombre;
     }
 
     public int ranNumProp() {
