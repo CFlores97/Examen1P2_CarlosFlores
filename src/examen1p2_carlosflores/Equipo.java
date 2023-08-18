@@ -13,6 +13,13 @@ public class Equipo {
     public Equipo() {
     }
 
+    public Equipo(String nombre, String pais) {
+        this.nombre = nombre;
+        this.pais = pais;
+    }
+    
+    
+
     public Equipo(String nombre, String pais, int rating) {
         this.nombre = nombre;
         this.pais = pais;
@@ -54,7 +61,8 @@ public class Equipo {
 
     @Override
     public String toString() {
-        return "Equipo{" + "nombre=" + nombre + ", pais=" + pais + ", rating=" + rating + ", plantilla=" + plantilla + '}';
+        return nombre;
+        //return "Equipo{" + "nombre=" + nombre + ", pais=" + pais + ", rating=" + rating + ", plantilla=" + plantilla + '}';
     }
     
     public int calcRatingE(){
