@@ -16,6 +16,7 @@ public class Equipo {
     public Equipo(String nombre, String pais) {
         this.nombre = nombre;
         this.pais = pais;
+        
     }
     
     
@@ -54,9 +55,13 @@ public class Equipo {
         return plantilla;
     }
 
-    public void setPlantilla(ArrayList<Jugador> plantilla) {
-        
-        this.plantilla = plantilla;
+    public void setPlantilla(ArrayList<Jugador> plantilla) throws MyException {
+        if(plantilla.size() < 4){
+            this.plantilla = plantilla;
+        }
+        else{
+            throw new MyException("No hay suficiente espacio en la plantilla");
+        }
     }
 
     @Override

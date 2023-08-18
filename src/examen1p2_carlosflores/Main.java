@@ -71,6 +71,8 @@ public class Main extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel17 = new javax.swing.JLabel();
         cb_jugadores = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -370,6 +372,10 @@ public class Main extends javax.swing.JFrame {
 
         jLabel17.setText("Jugadores:");
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -387,7 +393,10 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(cb_jugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(203, 203, 203)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -401,7 +410,9 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(cb_jugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Listar", jPanel1);
@@ -474,7 +485,7 @@ public class Main extends javax.swing.JFrame {
 
             dcEq.addElement(new Equipo(name, pais));
             dcEqEst.addElement(new Equipo(name, pais));
-            
+
             equipos.add(new Equipo(name, pais));
 
             cb_equipos.setModel(dcEq);
@@ -527,48 +538,64 @@ public class Main extends javax.swing.JFrame {
 
             DefaultComboBoxModel dcJug = (DefaultComboBoxModel) cb_jugadores.getModel();
             DefaultComboBoxModel dcPos = (DefaultComboBoxModel) cb_posiciones.getModel();
-            
+
             Equipo selectedEq = equipos.get(cb_equipos.getSelectedIndex());
-            
-            
-            
-            if (cb_posiciones.getSelectedIndex() == 0){
-                Portero portero = new Portero(name, nacionalidad, pieHabil, edad, selectedEq);
-                dcJug.addElement(portero);
-                selectedEq.getPlantilla().add(portero);
-                
-                JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el portero");
-                
+
+            if (cb_posiciones.getSelectedIndex() == 0) {
+
+                try {
+                    Portero portero = new Portero(name, nacionalidad, pieHabil, edad, selectedEq);
+                    porteros.add(portero);
+                    selectedEq.setPlantilla(porteros);
+
+                    dcJug.addElement(portero);
+
+                    JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el portero");
+
+                } catch (MyException e) {
+
+                    JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
             }
-            
-            if(cb_posiciones.getSelectedIndex() == 1){
-                Defensa defensor = new Defensa(name, nacionalidad, pieHabil, edad, selectedEq);
-                
-                dcJug.addElement(defensor);
-                selectedEq.getPlantilla().add(defensor);
-                
-                JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el defensor");
+
+            if (cb_posiciones.getSelectedIndex() == 1) {
+
+                try {
+                    Defensa defensor = new Defensa(name, nacionalidad, pieHabil, edad, selectedEq);
+                    defensas.add(defensor);
+                    selectedEq.setPlantilla(defensas);
+                    dcJug.addElement(defensor);
+
+                    JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el defensor");
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
             }
-            if(cb_posiciones.getSelectedIndex() == 2){
+            if (cb_posiciones.getSelectedIndex() == 2) {
                 Mediocampista mediocamp = new Mediocampista(name, nacionalidad, pieHabil, edad, selectedEq);
-                
+
                 dcJug.addElement(mediocamp);
                 selectedEq.getPlantilla().add(mediocamp);
-                
+
                 JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el medio campista");
             }
-            
-            if(cb_posiciones.getSelectedIndex() == 3){
+
+            if (cb_posiciones.getSelectedIndex() == 3) {
                 Delantero delantero = new Delantero(name, nacionalidad, pieHabil, edad, selectedEq);
-                
+
                 dcJug.addElement(delantero);
                 selectedEq.getPlantilla().add(delantero);
-                
+
                 JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el delantero");
-                
+
             }
-            
-            
+
+            tf_nombre1.setText("");
+            tf_nacionalidad.setText("");
+            tf_pieHabil.setText("");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrio un error y no se puedo agregar", "Error", JOptionPane.ERROR_MESSAGE);
@@ -610,8 +637,13 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-    
+
     ArrayList<Equipo> equipos = new ArrayList<>();
+    ArrayList<Jugador> porteros = new ArrayList<>();
+    ArrayList<Jugador> defensas = new ArrayList<>();
+    ArrayList<Jugador> mediocampistas = new ArrayList<>();
+    ArrayList<Jugador> delanteros = new ArrayList<>();
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_equipos;
@@ -646,8 +678,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField tf_ciudadEst;
     private javax.swing.JTextField tf_nacionalidad;
     private javax.swing.JTextField tf_nombre1;
