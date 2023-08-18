@@ -15,7 +15,7 @@ public class Defensa extends Jugador {
     }
 
     public Defensa(String nombre, String nacionalidad, String pieHabil, int edad, int rating, Equipo equipo) {
-        super(nombre, nacionalidad, pieHabil, edad, rating, equipo);
+        super(nombre, nacionalidad, pieHabil, edad, equipo);
     }
 
     @Override

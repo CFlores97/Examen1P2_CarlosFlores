@@ -16,7 +16,16 @@ public abstract class Jugador {
     public Jugador() {
     }
 
-    public Jugador(String nombre, String nacionalidad, String pieHabil, int edad, int rating, Equipo equipo) {
+    public Jugador(String nombre, String nacionalidad, String pieHabil, int edad) {
+        this.nombre = nombre;
+        this.nacionalidad = nacionalidad;
+        this.pieHabil = pieHabil;
+        this.edad = edad;
+    }
+    
+    
+
+    public Jugador(String nombre, String nacionalidad, String pieHabil, int edad, Equipo equipo) {
         this.nombre = nombre;
         this.nacionalidad = nacionalidad;
         this.pieHabil = pieHabil;
