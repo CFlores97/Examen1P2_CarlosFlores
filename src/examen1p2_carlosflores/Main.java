@@ -67,8 +67,6 @@ public class Main extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         cb_estadios = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel17 = new javax.swing.JLabel();
         cb_jugadores = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -357,19 +355,6 @@ public class Main extends javax.swing.JFrame {
 
         cb_estadios.setToolTipText("");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
         jLabel17.setText("Jugadores:");
 
         jTextArea1.setColumns(20);
@@ -381,23 +366,18 @@ public class Main extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cb_estadios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(68, 68, 68)
                         .addComponent(jLabel17)
                         .addGap(18, 18, 18)
-                        .addComponent(cb_jugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(203, 203, 203)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(109, Short.MAX_VALUE))
+                        .addComponent(cb_jugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,11 +388,9 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(cb_estadios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cb_jugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Listar", jPanel1);
@@ -569,33 +547,48 @@ public class Main extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el defensor");
 
-                } catch (Exception e) {
+                } catch (MyException e) {
                     JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             }
             if (cb_posiciones.getSelectedIndex() == 2) {
-                Mediocampista mediocamp = new Mediocampista(name, nacionalidad, pieHabil, edad, selectedEq);
 
-                dcJug.addElement(mediocamp);
-                selectedEq.getPlantilla().add(mediocamp);
+                try {
+                    Mediocampista mediocamp = new Mediocampista(name, nacionalidad, pieHabil, edad, selectedEq);
+                    mediocampistas.add(mediocamp);
+                    selectedEq.setPlantilla(mediocampistas);
+                    dcJug.addElement(mediocamp);
+                    JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el defensor");
 
-                JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el medio campista");
+                } catch (MyException e) {
+                    JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
+
+                }
+
             }
 
             if (cb_posiciones.getSelectedIndex() == 3) {
-                Delantero delantero = new Delantero(name, nacionalidad, pieHabil, edad, selectedEq);
 
-                dcJug.addElement(delantero);
-                selectedEq.getPlantilla().add(delantero);
+                try {
+                    Delantero delantero = new Delantero(name, nacionalidad, pieHabil, edad, selectedEq);
+                    delanteros.add(delantero);
+                    selectedEq.setPlantilla(delanteros);
+                    dcJug.addElement(delantero);
 
-                JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el delantero");
+                    JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el delantero");
+
+                } catch (MyException e) {
+                    JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
+
+                }
 
             }
 
             tf_nombre1.setText("");
             tf_nacionalidad.setText("");
             tf_pieHabil.setText("");
+            ff_edad.setText("");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrio un error y no se puedo agregar", "Error", JOptionPane.ERROR_MESSAGE);
@@ -677,10 +670,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField tf_ciudadEst;
     private javax.swing.JTextField tf_nacionalidad;
