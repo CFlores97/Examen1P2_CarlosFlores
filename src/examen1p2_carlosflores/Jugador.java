@@ -1,16 +1,15 @@
-
 package examen1p2_carlosflores;
 
 import java.util.Random;
 
-
 public abstract class Jugador {
+
     Random ran = new Random();
     //generales
     private String nombre, nacionalidad, pieHabil;
     private int edad, rating;
     private Equipo equipo = new Equipo();
-    
+
     // especificas
     private int agarre, lanzamiento, fisico, ritmo, entrada, vision, passing, regate, disparo;
 
@@ -24,10 +23,7 @@ public abstract class Jugador {
         this.edad = edad;
         setRating(rating);
         this.equipo = equipo;
-        
-        
-        
-        
+
     }
 
     public String getNombre() {
@@ -68,10 +64,10 @@ public abstract class Jugador {
 
     public void setRating(int rating) {
         int numerador = agarre + lanzamiento + fisico + ritmo + entrada + vision + passing + regate + disparo;
-        int dennominador  = 9;
-        
-        int promedio = numerador/dennominador;
-        
+        int dennominador = 9;
+
+        int promedio = numerador / dennominador;
+
         this.rating = promedio;
     }
 
@@ -159,32 +155,30 @@ public abstract class Jugador {
     public String toString() {
         return "Jugador{" + "nombre=" + nombre + ", nacionalidad=" + nacionalidad + ", pieHabil=" + pieHabil + ", edad=" + edad + ", rating=" + rating + ", equipo=" + equipo + ", agarre=" + agarre + ", lanzamiento=" + lanzamiento + ", fisico=" + fisico + ", ritmo=" + ritmo + ", entrada=" + entrada + ", vision=" + vision + ", passing=" + passing + ", regate=" + regate + ", disparo=" + disparo + '}';
     }
-    
-    public int ranNumProp(){
-        
-        
+
+    public int ranNumProp() {
+
         int ranNum = ran.nextInt(12) + 1;
         int value = ranNum * 12;
-        
-        while (value * 12 < 70){
+
+        while (value * 12 < 70) {
             ranNum = ran.nextInt(12) + 1;
             value = ranNum * 12;
         }
-        
+
         return ranNum;
-        
+
     }
-    
-    public int ranNumGen(){
+
+    public int ranNumGen() {
         int ranNum = ran.nextInt(5) + 1;
         int value = ranNum * 13;
-        
+
         return value;
     }
+
     public abstract void calcRatEsp();
+
     public abstract void calcRatGen();
 
-    
-    
-    
 }
