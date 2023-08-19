@@ -162,7 +162,7 @@ public abstract class Jugador {
 
     @Override
     public String toString() {
-        return "nombre: " + nombre + "Equipo: " + equipo.toString();
+        return "nombre: " + nombre + " Equipo: " + equipo.toString();
     }
 
     public int ranNumProp() {
