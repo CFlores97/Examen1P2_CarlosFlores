@@ -5,6 +5,7 @@
 package examen1p2_carlosflores;
 
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -88,6 +89,12 @@ public class Main extends javax.swing.JFrame {
         t_estadios = new javax.swing.JTable();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        cb_jugadorSel1 = new javax.swing.JComboBox<>();
+        cb_jugadorSel2 = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -592,6 +599,59 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("CRUD estadio", jPanel6);
 
+        jLabel20.setText("Jugador 1: ");
+
+        jLabel21.setText("Jugador 2: ");
+
+        jButton10.setText("COMPARAR!");
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton10MouseClicked(evt);
+            }
+        });
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_jugadorSel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_jugadorSel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(637, 637, 637))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_jugadorSel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_jugadorSel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(221, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Simulacion", jPanel7);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -715,6 +775,8 @@ public class Main extends javax.swing.JFrame {
             edad = Integer.parseInt(ff_edad.getText());
 
             DefaultComboBoxModel dcJug = (DefaultComboBoxModel) cb_jugadores.getModel();
+            DefaultComboBoxModel dcJug2 = (DefaultComboBoxModel) cb_jugadorSel1.getModel();
+            DefaultComboBoxModel dcJug3 = (DefaultComboBoxModel) cb_jugadorSel2.getModel();
             DefaultComboBoxModel dcPos = (DefaultComboBoxModel) cb_posiciones.getModel();
 
             Equipo selectedEq = equipos.get(cb_equipos.getSelectedIndex());
@@ -728,6 +790,8 @@ public class Main extends javax.swing.JFrame {
                     selectedEq.setPlantilla(porteros);
 
                     dcJug.addElement(portero);
+                    dcJug2.addElement(portero);
+                    dcJug3.addElement(portero);
 
                     JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el portero");
 
@@ -746,6 +810,8 @@ public class Main extends javax.swing.JFrame {
                     jugadores.add(defensor);
                     selectedEq.setPlantilla(defensas);
                     dcJug.addElement(defensor);
+                    dcJug2.addElement(defensor);
+                    dcJug3.addElement(defensor);
 
                     JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el defensor");
 
@@ -762,6 +828,8 @@ public class Main extends javax.swing.JFrame {
                     jugadores.add(mediocamp);
                     selectedEq.setPlantilla(mediocampistas);
                     dcJug.addElement(mediocamp);
+                    dcJug2.addElement(mediocamp);
+                    dcJug3.addElement(mediocamp);
                     JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el defensor");
 
                 } catch (MyException e) {
@@ -779,6 +847,8 @@ public class Main extends javax.swing.JFrame {
                     jugadores.add(delantero);
                     selectedEq.setPlantilla(delanteros);
                     dcJug.addElement(delantero);
+                    dcJug2.addElement(delantero);
+                    dcJug3.addElement(delantero);
 
                     JOptionPane.showMessageDialog(this, "Se ha guardado exitosamente el delantero");
 
@@ -900,13 +970,33 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_estadios2ItemStateChanged
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-        if (t_tablaEq.getSelectedRow() >= 0) {
-            DefaultTableModel modelo = (DefaultTableModel) t_tablaEq.getModel();
-            modelo.removeRow(t_tablaEq.getSelectedRow());
-            cb_equipos.remove(t_tablaEq.getSelectedRow() + 1);
-            t_tablaEq.setModel(modelo);
+        if (t_estadios.getSelectedRow() >= 0) {
+            DefaultTableModel modelo = (DefaultTableModel) t_estadios.getModel();
+            modelo.removeRow(t_estadios.getSelectedRow());
+            cb_estadios2.remove(t_estadios.getSelectedRow() + 1);
+            t_estadios.setModel(modelo);
         }
     }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
+        Random ran = new Random();
+        
+        int dif = ((Jugador)cb_jugadorSel1.getSelectedItem()).getRating() - ((Jugador)cb_jugadorSel2.getSelectedItem()).getRating();
+        int newDif, cantGol;
+        if(dif <= 10){
+            newDif = dif *4; 
+            cantGol = ran.nextInt(5);
+        }
+        else{
+            newDif = dif *5; 
+        }
+        
+        JOptionPane.showMessageDialog(this, "La probabilidad es: " + newDif);
+    }//GEN-LAST:event_jButton10MouseClicked
 
     /**
      * @param args the command line arguments
@@ -958,11 +1048,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_equiposEst;
     private javax.swing.JComboBox<String> cb_estadios;
     private javax.swing.JComboBox<String> cb_estadios2;
+    private javax.swing.JComboBox<String> cb_jugadorSel1;
+    private javax.swing.JComboBox<String> cb_jugadorSel2;
     private javax.swing.JComboBox<String> cb_jugadores;
     private javax.swing.JComboBox<String> cb_posiciones;
     private javax.swing.JFormattedTextField ff_capacidad;
     private javax.swing.JFormattedTextField ff_edad;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -983,6 +1076,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -996,6 +1091,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
